@@ -15,7 +15,7 @@ pipeline {
              sh """
                 python3 -m venv venv
                 . venv/bin/activate
-                pip install --user -e .
+                pip install -e .
                 export FLASK_APP=js_example
                 pip install --user -e '.[test]'
                 coverage run -m pytest
