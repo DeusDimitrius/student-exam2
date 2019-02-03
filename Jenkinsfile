@@ -27,7 +27,6 @@ pipeline {
 
      stage("Build") {
       steps { 
-              sh "systemctl start docker"
               script {
                DOCKER_IMAGE = docker.build DOCKER_HUB_REGISTRY + ":flaskapp"
               }
