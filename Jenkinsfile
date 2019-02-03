@@ -17,7 +17,7 @@ pipeline {
                 . venv/bin/activate
                 pip install -e .
                 export FLASK_APP=js_example
-                pip install --user -e '.[test]'
+                pip install -e '.[test]'
                 coverage run -m pytest
                 coverage report
                 deactivate
