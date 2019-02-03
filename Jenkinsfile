@@ -28,7 +28,7 @@ pipeline {
      stage("Build") {
       steps { 
               script {
-               DOCKER_IMAGE = docker.build DOCKER_HUB_REGISTRY + ":flaskapp"
+               DOCKER_IMAGE = docker.build DOCKER_HUB_REGISTRY + ":$BUILD_NUMBER"
               }
             }
      }
