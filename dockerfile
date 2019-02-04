@@ -1,27 +1,29 @@
-FROM python:latest
+FROM alpine:latest
 
 MAINTAINER Dmitry Balashov <dbalash0w@yandex.ru>
 
-ENV REFRESHED_AT 2019-01–28
+ENV REFRESHED_AT 2019-01-28
 
 LABEL Description="Dockerfile for the webapp" \
         Vendor="Balashov Dmitry" \
         Version="0.1"
 
+RUN apk get update && apk add py-pip python3 zip curl git && pip install --upgrade pip
+
 # Assign the working directory
-WORKDIR /usr/app
+RUN mkdir epam_exam2
+WORKDIR student_exam2
 
-# Copy files from github
-RUN git clone https://github.com/DeusDimitrius/student-exam2.git
-WORKDIR /usr/app/student-exam2
-
-# Install venv for python3
 RUN \
-    pip install --upgrade pip \
-  && python3 -m venv venv \
-  && . venv/bin/activate 
+    git clone https://github.com/DeusDimitrius/student-exam2.git \
+    && apk del zip curl git
 
-RUN  pip install -e .  
+WORKDIR epam_exam2/student-exam2
+
+RUN \
+  python3 -m venv venv \
+  && . venv/bin/activate \
+  pip install -e .
 
 # For flask use js_example
 ENV FLASK_APP=js_example
