@@ -31,3 +31,5 @@ ENV FLASK_APP=js_example
 # Making port 5000 available outside the container
 EXPOSE 5000
 
+# Run the application after running the container
+CMD flask run --host=0.0.0.0
